@@ -3,204 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weekly Schedule | UlamFinder</title>
+    <title>Meal Plan | UlamFinder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-mint: #5bc9b1;
-            --primary-pink: #f4a2b9;
-            --dark-text: #3d1c1c;
-            --bg-color: #fff9f9;
-            --white: #ffffff;
-            --border: #f0f0f0;
-        }
+        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; --bg: #fff9f9; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .nav-header { width: 100%; max-width: 600px; margin-bottom: 20px; }
+        .back-btn { text-decoration: none; color: var(--dark); font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--dark-text);
-            margin: 0;
-            padding: 40px;
-            display: flex;
-            justify-content: center;
-        }
+        .card { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); width: 100%; max-width: 550px; animation: slideIn 0.5s ease; }
+        .icon { font-size: 2.5rem; color: var(--mint); margin-bottom: 10px; text-align: center; }
+        h1 { text-align: center; font-size: 1.5rem; margin-bottom: 30px; }
 
-        .main-container {
-            display: grid;
-            grid-template-columns: 350px 1fr;
-            gap: 40px;
-            max-width: 1100px;
-            width: 100%;
-        }
+        .row { display: flex; gap: 10px; margin-bottom: 20px; }
+        select, input { padding: 12px; border: 2px solid #f0f0f0; border-radius: 12px; font-size: 0.9rem; }
+        select { flex: 1; }
+        input { flex: 2; }
+        
+        .save-btn { background: var(--mint); color: white; border: none; padding: 0 25px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        .save-btn:hover { background: #4eb09b; }
 
-        /* Form Section */
-        .form-card {
-            background: var(--white);
-            padding: 30px;
-            border-radius: 24px;
-            height: fit-content;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            position: sticky;
-            top: 40px;
-        }
-
-        h2 { font-size: 1.5rem; margin-bottom: 20px; }
-        h2 span { color: var(--primary-mint); }
-
-        .input-group { margin-bottom: 15px; }
-        label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 8px; color: #888; text-transform: uppercase; }
-
-        input, select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid var(--border);
-            border-radius: 12px;
-            font-size: 1rem;
-            box-sizing: border-box;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        input:focus { border-color: var(--primary-pink); }
-
-        .add-btn {
-            width: 100%;
-            background: var(--primary-mint);
-            color: white;
-            border: none;
-            padding: 15px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            margin-top: 10px;
-            transition: transform 0.2s;
-        }
-
-        .add-btn:hover { transform: translateY(-2px); background: #4eb09b; }
-
-        /* List Section */
-        .plan-display {
-            background: transparent;
-        }
-
-        .meal-item {
-            background: var(--white);
-            padding: 20px 25px;
-            border-radius: 18px;
-            margin-bottom: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            border-left: 6px solid var(--primary-pink);
-            animation: slideIn 0.3s ease;
-        }
-
-        .meal-details h3 { margin: 0; font-size: 1.1rem; }
-        .meal-details p { margin: 4px 0 0; color: #888; font-size: 0.9rem; font-weight: 600; text-transform: uppercase; }
-
-        .delete-btn {
-            background: #fff0f3;
-            color: #ff6b6b;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 0.8rem;
-        }
-
-        .delete-btn:hover { background: #ff6b6b; color: white; }
-
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        @media (max-width: 850px) {
-            .main-container { grid-template-columns: 1fr; }
-            .form-card { position: relative; top: 0; }
-        }
+        .meal-card { background: #fff9fa; border: 1px solid #ffeef1; padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
+        .meal-card b { color: var(--pink); text-transform: uppercase; font-size: 0.75rem; display: block; }
+        
+        @keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     </style>
 </head>
 <body>
 
-<div class="main-container">
-    <div class="form-card">
-        <h2>Add <span>Meal</span></h2>
-        <div class="input-group">
-            <label>Select Day</label>
+    <div class="nav-header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    </div>
+
+    <div class="card">
+        <div class="icon"><i class="fa-solid fa-calendar-day"></i></div>
+        <h1>Weekly <span>Meal Plan</span></h1>
+        
+        <div class="row">
             <select id="day">
-                <option>Monday</option>
-                <option>Tuesday</option>
-                <option>Wednesday</option>
-                <option>Thursday</option>
-                <option>Friday</option>
-                <option>Saturday</option>
-                <option>Sunday</option>
+                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
             </select>
+            <input id="meal" placeholder="What's for dinner?">
+            <button class="save-btn" onclick="saveMeal()">Save</button>
         </div>
-        <div class="input-group">
-            <label>Dish Name</label>
-            <input id="meal" placeholder="e.g. Chicken Adobo">
-        </div>
-        <button class="add-btn" onclick="addMeal()">Save to Plan</button>
+
+        <div id="planner"></div>
     </div>
 
-    <div class="plan-display">
-        <h2 style="margin-top: 0;">Weekly <span>Schedule</span></h2>
-        <div id="mealList"></div>
-    </div>
-</div>
-
-<script>
-    let meals = JSON.parse(localStorage.getItem("meals")) || [];
-
-    function renderMeals() {
-        let list = document.getElementById("mealList");
-        list.innerHTML = "";
-
-        if (meals.length === 0) {
-            list.innerHTML = `<p style="color: #aaa; font-style: italic;">No meals planned yet. Start adding above!</p>`;
+    <script>
+        let meals = JSON.parse(localStorage.getItem("meals")) || []
+        function render(){
+            let list=document.getElementById("planner")
+            list.innerHTML=""
+            meals.forEach((m, i)=>{
+                let div=document.createElement("div")
+                div.className="meal-card"
+                div.innerHTML=`<div><b>${m.day}</b> ${m.meal}</div> <button style="border:none; background:none; color:#ff6b6b; cursor:pointer;" onclick="del(${i})"><i class="fa-solid fa-circle-xmark"></i></button>`
+                list.appendChild(div)
+            })
         }
-
-        meals.forEach((meal, index) => {
-            let div = document.createElement("div");
-            div.className = "meal-item";
-            div.innerHTML = `
-                <div class="meal-details">
-                    <p>${meal.day}</p>
-                    <h3>${meal.meal}</h3>
-                </div>
-                <button class="delete-btn" onclick="deleteMeal(${index})">Remove</button>
-            `;
-            list.appendChild(div);
-        });
-    }
-
-    function addMeal() {
-        let day = document.getElementById("day").value;
-        let meal = document.getElementById("meal").value.trim();
-
-        if (meal === "") {
-            alert("Please enter a dish name");
-            return;
+        function saveMeal(){
+            let day=document.getElementById("day").value
+            let meal=document.getElementById("meal").value.trim()
+            if(meal){
+                meals.push({day,meal})
+                localStorage.setItem("meals",JSON.stringify(meals))
+                document.getElementById("meal").value = ""
+                render()
+            }
         }
-
-        meals.push({ day, meal });
-        localStorage.setItem("meals", JSON.stringify(meals));
-        document.getElementById("meal").value = "";
-        renderMeals();
-    }
-
-    function deleteMeal(index) {
-        meals.splice(index, 1);
-        localStorage.setItem("meals", JSON.stringify(meals));
-        renderMeals();
-    }
-
-    renderMeals();
-</script>
-
+        function del(i){ meals.splice(i,1); localStorage.setItem("meals",JSON.stringify(meals)); render(); }
+        render()
+    </script>
 </body>
 </html>

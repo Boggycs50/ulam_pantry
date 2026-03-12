@@ -4,174 +4,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pantry | UlamFinder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-mint: #5bc9b1;
-            --primary-pink: #f4a2b9; /* Matching your "pantry" text color */
-            --dark-text: #3d1c1c;    /* Deep brown/black from your headline */
-            --bg-color: #fff9f9;     /* Slight warmth to the background */
-            --white: #ffffff;
-            --gray: #f0f0f0;
-        }
+        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; --bg: #fff9f9; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
+        
+        .nav-header { width: 100%; max-width: 500px; margin-bottom: 20px; animation: fadeIn 0.8s ease; }
+        .back-btn { text-decoration: none; color: var(--dark); font-weight: 600; display: flex; align-items: center; gap: 8px; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--dark-text);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 50px 20px;
-        }
+        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 450px; animation: slideUp 0.6s ease-out; }
+        .header-icon { font-size: 3rem; color: var(--pink); margin-bottom: 15px; text-align: center; }
+        h1 { text-align: center; margin-top: 0; }
+        h1 span { color: var(--pink); }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            background: var(--white);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
+        .input-group { display: flex; gap: 10px; margin-bottom: 30px; }
+        input { flex: 1; padding: 14px; border: 2px solid #eee; border-radius: 50px; outline: none; }
+        input:focus { border-color: var(--mint); }
+        
+        button.add-btn { background: var(--mint); color: white; border: none; padding: 14px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+        button.add-btn:hover { transform: scale(1.05); background: #4eb09b; }
 
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 24px;
-            font-weight: 700;
-        }
+        ul { list-style: none; padding: 0; }
+        li { background: #fafafa; padding: 15px 20px; margin-bottom: 10px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--mint); transition: 0.2s; }
+        li:hover { transform: translateX(5px); background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
 
-        h1 span {
-            color: var(--primary-pink);
-        }
+        .del-btn { color: #ff6b6b; background: none; border: none; cursor: pointer; font-size: 1.1rem; }
 
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 30px;
-        }
-
-        input {
-            flex: 1;
-            padding: 14px 20px;
-            border: 2px solid var(--gray);
-            border-radius: 50px;
-            outline: none;
-            transition: border-color 0.3s ease;
-            font-size: 1rem;
-        }
-
-        input:focus {
-            border-color: var(--primary-mint);
-        }
-
-        button {
-            background-color: var(--primary-mint);
-            color: white;
-            border: none;
-            padding: 14px 28px;
-            border-radius: 50px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.2s ease, background-color 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #4eb09b;
-            transform: translateY(-2px);
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        li {
-            background: #fff;
-            padding: 15px 20px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border: 1px solid var(--gray);
-            animation: fadeIn 0.3s ease;
-        }
-
-        .delete-btn {
-            background: transparent;
-            color: #ff6b6b;
-            padding: 5px 10px;
-            font-size: 0.8rem;
-            border: 1px solid #ff6b6b;
-        }
-
-        .delete-btn:hover {
-            background: #ff6b6b;
-            color: white;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Your <span>Pantry</span></h1>
-    
-    <div class="input-group">
-        <input id="foodInput" placeholder="What's in your kitchen?">
-        <button onclick="addFood()">Add Item</button>
+    <div class="nav-header">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
     </div>
 
-    <ul id="foodList"></ul>
-</div>
-
-<script>
-    let pantry = JSON.parse(localStorage.getItem("pantry")) || [];
-
-    function render() {
-        let list = document.getElementById("foodList");
-        list.innerHTML = "";
-
-        pantry.forEach((food, index) => {
-            let li = document.createElement("li");
-            li.innerHTML = `
-                ${food}
-                <button class="delete-btn" onclick="removeItem(${index})">Remove</button>
-            `;
-            list.appendChild(li);
-        });
-    }
-
-    function addFood() {
-        let input = document.getElementById("foodInput");
-        let food = input.value.trim();
+    <div class="container">
+        <div class="header-icon"><i class="fa-solid fa-basket-shopping"></i></div>
+        <h1>My <span>Pantry</span></h1>
         
-        if (food) {
-            pantry.push(food);
-            localStorage.setItem("pantry", JSON.stringify(pantry));
-            input.value = ""; // Clear input
+        <div class="input-group">
+            <input id="foodInput" placeholder="Add ingredients...">
+            <button class="add-btn" onclick="addFood()">Add</button>
+        </div>
+
+        <ul id="foodList"></ul>
+    </div>
+
+    <script>
+        let pantry = JSON.parse(localStorage.getItem("pantry")) || []
+        function render(){
+            let list=document.getElementById("foodList")
+            list.innerHTML=""
+            pantry.forEach((food, index)=>{
+                let li=document.createElement("li")
+                li.innerHTML=`${food} <button class="del-btn" onclick="remove(${index})"><i class="fa-solid fa-trash-can"></i></button>`
+                list.appendChild(li)
+            })
+        }
+        function addFood(){
+            let food=document.getElementById("foodInput").value.trim()
+            if(food){
+                pantry.push(food);
+                localStorage.setItem("pantry",JSON.stringify(pantry));
+                document.getElementById("foodInput").value = "";
+                render();
+            }
+        }
+        function remove(i){
+            pantry.splice(i, 1);
+            localStorage.setItem("pantry",JSON.stringify(pantry));
             render();
         }
-    }
-
-    function removeItem(index) {
-        pantry.splice(index, 1);
-        localStorage.setItem("pantry", JSON.stringify(pantry));
-        render();
-    }
-
-    // Allow "Enter" key to add items
-    document.getElementById("foodInput").addEventListener("keypress", function(e) {
-        if (e.key === "Enter") addFood();
-    });
-
-    render();
-</script>
-
+        render()
+    </script>
 </body>
 </html>

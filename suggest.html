@@ -3,162 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipe Suggestion | UlamFinder</title>
+    <title>Suggest | UlamFinder</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-mint: #5bc9b1;
-            --primary-pink: #f4a2b9;
-            --dark-text: #3d1c1c;
-            --bg-color: #fff9f9;
-            --white: #ffffff;
-        }
+        :root { --mint: #5bc9b1; --pink: #f4a2b9; --bg: #fff9f9; }
+        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
+        .nav-header { width: 100%; max-width: 400px; margin-bottom: 20px; }
+        
+        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 400px; animation: bounceIn 0.8s; }
+        .magic-icon { font-size: 3.5rem; color: var(--pink); margin-bottom: 20px; animation: float 3s infinite ease-in-out; }
+        
+        .btn { background: var(--mint); color: white; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 20px rgba(91,201,177,0.3); }
+        .btn:hover { transform: translateY(-3px); background: #4eb09b; }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-color);
-            color: var(--dark-text);
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
-            padding: 20px;
-        }
-
-        .card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 24px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            text-align: center;
-            max-width: 450px;
-            width: 100%;
-        }
-
-        h1 {
-            font-size: 2rem;
-            margin-bottom: 10px;
-            font-weight: 700;
-        }
-
-        h1 span {
-            color: var(--primary-pink);
-        }
-
-        p.subtitle {
-            color: #888;
-            margin-bottom: 30px;
-        }
-
-        .suggest-btn {
-            background-color: var(--primary-mint);
-            color: white;
-            border: none;
-            padding: 16px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-            margin-bottom: 20px;
-        }
-
-        .suggest-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(91, 201, 177, 0.4);
-        }
-
-        #result-container {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 2px dashed #eee;
-            display: none; /* Hidden until a recipe is found */
-            animation: fadeIn 0.5s ease;
-        }
-
-        .recipe-badge {
-            display: inline-block;
-            background: #fff0f3;
-            color: var(--primary-pink);
-            padding: 8px 16px;
-            border-radius: 50px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-        }
-
-        #result {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--dark-text);
-            margin: 0;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .no-match {
-            color: #a0a0a0;
-            font-style: italic;
-        }
+        #result { margin-top: 30px; padding: 20px; border-radius: 20px; background: #fdf2f5; display: none; font-weight: bold; color: #3d1c1c; font-size: 1.2rem; border: 2px dashed var(--pink); animation: fadeInUp 0.5s; }
+        
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+        @keyframes bounceIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
-
+    <div class="nav-header"><a href="index.html" style="text-decoration:none; color:black; font-weight:bold;"><i class="fa-solid fa-house"></i> Home</a></div>
     <div class="card">
-        <h1>Use What <span>You Have</span></h1>
-        <p class="subtitle">We'll check your pantry and find a match.</p>
-        
-        <button class="suggest-btn" onclick="suggest()">Suggest a Dish</button>
-
-        <div id="result-container">
-            <div class="recipe-badge">Chef's Suggestion</div>
-            <p id="result"></p>
-        </div>
+        <div class="magic-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <h1>Suggest <span>Recipe</span></h1>
+        <p style="color: #888; margin-bottom: 30px;">Click below to find a dish using your current pantry items.</p>
+        <button class="btn" onclick="suggest()">FIND A RECIPE</button>
+        <div id="result"></div>
     </div>
 
     <script>
-        function suggest() {
-            const pantry = JSON.parse(localStorage.getItem("pantry")) || [];
-            const resultContainer = document.getElementById("result-container");
-            const resultText = document.getElementById("result");
-
-            const recipes = {
-                egg: "Fluffy Omelette",
-                rice: "Garlic Fried Rice",
-                chicken: "Classic Chicken Adobo",
-                bread: "Toasted Gourmet Sandwich",
-                milk: "Creamy Pasta",
-                potato: "Crispy Home Fries"
-            };
-
-            // Find all matches
-            let foundRecipes = [];
-            pantry.forEach(item => {
-                let cleanItem = item.toLowerCase().trim();
-                if (recipes[cleanItem]) {
-                    foundRecipes.push(recipes[cleanItem]);
-                }
-            });
-
-            resultContainer.style.display = "block";
-
-            if (foundRecipes.length > 0) {
-                // Show the first match found
-                resultText.innerText = foundRecipes[0];
-                resultText.classList.remove("no-match");
-            } else {
-                resultText.innerText = "No recipes found for your current pantry.";
-                resultText.classList.add("no-match");
+        function suggest(){
+            let pantry = JSON.parse(localStorage.getItem("pantry")) || []
+            let recipes={ egg:"Creamy Omelette", rice:"Garlic Fried Rice", chicken:"Adobo bowl", bread:"Classic Sandwich" }
+            let found = "No match found!";
+            for(let item of pantry){
+                if(recipes[item.toLowerCase()]){ found = "Chef suggests: " + recipes[item.toLowerCase()]; break; }
             }
+            let res = document.getElementById("result");
+            res.innerText = found;
+            res.style.display = "block";
         }
     </script>
-
 </body>
 </html>

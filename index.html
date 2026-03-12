@@ -2,94 +2,91 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>My Pantry | UlamFinder</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UlamFinder | Connect Your Pantry</title>
+    
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-    <header class="subpage-header">
-        <a href="index.html" class="back-link">
-            <i class="fa-solid fa-house"></i> Back to Home
-        </a>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Ulam<span>Finder</span></a>
+        <div style="display: flex; gap: 25px;">
+            <a href="pantry.html" style="text-decoration: none; color: inherit; font-weight: 600;">Pantry</a>
+            <a href="mealplan.html" style="text-decoration: none; color: inherit; font-weight: 600;">Meal Plan</a>
+            <a href="login.html" style="text-decoration: none; color: inherit; font-weight: 600;">Login</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <h1>Connect your <span>pantry</span> to your plate.</h1>
+            <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
+            <a href="#dashboard" class="btn-main">Start Planning</a>
+        </div>
+        <div class="hero-image" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000" alt="Kitchen Pantry">
+        </div>
     </header>
 
-    <div class="container" style="max-width: 1000px; margin: 0 auto; padding: 0 8%;" data-aos="fade-up">
-        <h1 style="font-family: 'Playfair Display'; font-size: 3rem; margin-bottom: 10px;">My <span>Pantry</span></h1>
-        <p style="color: #666; margin-bottom: 40px;">Manage your current ingredients and stock levels.</p>
+    <section id="dashboard" class="features">
+        
+        <a href="scanner.html" class="card" data-aos="fade-up">
+            <i class="fa-solid fa-camera-viewfinder icon-scan"></i>
+            <h3>Pantry Scanner</h3>
+            <p>AI recognition for your groceries. Just point and log.</p>
+        </a>
 
-        <div style="display: flex; gap: 15px; margin-bottom: 30px;">
-            <div style="flex: 1; background: white; padding: 15px 25px; border-radius: 50px; border: 1px solid #eee; color: #aaa;">
-                <i class="fa-solid fa-magnifying-glass"></i> Search ingredients...
-            </div>
-            <div style="background: var(--mint-brand); color: white; padding: 15px 25px; border-radius: 50px; font-weight: 700;">
-                + Add Item
-            </div>
-        </div>
+        <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
+            <i class="fa-solid fa-wand-magic-sparkles icon-magic"></i>
+            <h3>Magic Suggestions</h3>
+            <p>Recipes based on what you have in your stock right now.</p>
+        </a>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
-            
-            <div class="card" style="padding: 25px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <i class="fa-solid fa-egg" style="color: var(--pink-brand); font-size: 1.5rem;"></i>
-                    <span style="background: #e0f7f3; color: var(--mint-brand); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;">IN STOCK</span>
-                </div>
-                <h3 style="margin: 15px 0 5px; border: none; padding: 0;">Fresh Eggs</h3>
-                <p style="margin: 0; font-size: 0.8rem;">Quantity: 12 pcs</p>
-            </div>
+        <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
+            <i class="fa-solid fa-calendar-check icon-plan"></i>
+            <h3>Weekly Planner</h3>
+            <p>Your full 7-day meal schedule. See your plan at a glance.</p>
+        </a>
 
-            <div class="card" style="padding: 25px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <i class="fa-solid fa-clove-garlic" style="color: var(--pink-brand); font-size: 1.5rem;"></i>
-                    <span style="background: #fff0f3; color: var(--pink-brand); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;">LOW STOCK</span>
-                </div>
-                <h3 style="margin: 15px 0 5px; border: none; padding: 0;">Garlic Rice</h3>
-                <p style="margin: 0; font-size: 0.8rem;">Quantity: 500g</p>
-            </div>
+        <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
+            <i class="fa-solid fa-chart-line icon-insight"></i>
+            <h3>Insights</h3>
+            <p>Track spending and food waste with visual data charts.</p>
+        </a>
 
-            <div class="card" style="padding: 25px;">
-                <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                    <i class="fa-solid fa-bottle-droplet" style="color: var(--pink-brand); font-size: 1.5rem;"></i>
-                    <span style="background: #e0f7f3; color: var(--mint-brand); padding: 5px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 800;">IN STOCK</span>
-                </div>
-                <h3 style="margin: 15px 0 5px; border: none; padding: 0;">Soy Sauce</h3>
-                <p style="margin: 0; font-size: 0.8rem;">Quantity: 1 Liter</p>
-            </div>
-
-        </div>
-    </div>
+    </section>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-  // 1. Initialize Animations
-  AOS.init({
-    duration: 1000,
-    once: true
-  });
+    <script>
+        // 1. Initialize Animations
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
 
-  // 2. Fix Start Planning Button (Smooth Scroll)
-  const planBtn = document.querySelector('.btn-main');
-  if (planBtn) {
-    planBtn.addEventListener('click', function(e) {
-      // Only scroll if the link is an anchor (starts with #)
-      if (this.getAttribute('href').startsWith('#')) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
-        
-        if (targetSection) {
-          targetSection.scrollIntoView({ 
-            behavior: 'smooth',
-            block: 'start'
-          });
+        // 2. Fix Start Planning Button (Smooth Scroll Function)
+        const planBtn = document.querySelector('.btn-main');
+        if (planBtn) {
+            planBtn.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                
+                // Only act if it's an internal link
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const targetSection = document.querySelector(href);
+                    
+                    if (targetSection) {
+                        targetSection.scrollIntoView({ 
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
         }
-      }
-    });
-  }
-
-  // 3. Simple Console Log to check if it's working
-  console.log("UlamFinder JS Loaded: Animations and Smooth Scroll Active!");
-</script>
+    </script>
 </body>
 </html>

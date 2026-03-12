@@ -2,34 +2,72 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Weekly Plan | UlamFinder</title>
+    <title>Weekly Planner | UlamFinder</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        .day-row {
+            display: grid;
+            grid-template-columns: 100px 1fr 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        .meal-slot {
+            background: white;
+            padding: 15px;
+            border-radius: 18px;
+            font-size: 0.85rem;
+            border: 1px solid var(--pink-light);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02);
+        }
+        .meal-slot b { display: block; color: var(--pink-accent); font-size: 0.7rem; text-transform: uppercase; margin-bottom: 5px; }
+        .day-label { font-weight: 800; color: var(--deep-berry); }
+        
+        @media (max-width: 768px) {
+            .day-row { grid-template-columns: 1fr; gap: 10px; margin-bottom: 40px; }
+        }
+    </style>
 </head>
 <body>
     <div class="nav-header">
-        <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Home</a>
     </div>
 
-    <div class="container">
-        <div style="text-align: center; margin-bottom: 40px;">
-            <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Your Weekly <span>Schedule</span></h1>
-            <p style="color: #888;">Here is what you have planned for the next 7 days.</p>
+    <div class="container" style="max-width: 1000px;" data-aos="fade-up">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
+            <h1 style="margin: 0;">Weekly <span>Planner</span></h1>
+            <button class="btn" style="padding: 10px 25px; font-size: 0.8rem;">+ New Plan</button>
         </div>
 
-        <div class="weekly-grid">
-            <div class="day-card"><h4>Monday</h4><p>Chicken Adobo</p></div>
-            <div class="day-card"><h4>Tuesday</h4><p>Sinigang na Hipon</p></div>
-            <div class="day-card"><h4>Wednesday</h4><p>Beef Pares</p></div>
-            <div class="day-card"><h4>Thursday</h4><p>Pork Menudo</p></div>
-            <div class="day-card"><h4>Friday</h4><p>Ginisang Monggo</p></div>
-            <div class="day-card"><h4>Saturday</h4><p>Chicken Curry</p></div>
-            <div class="day-card"><h4>Sunday</h4><p>Family Samgyupsal</p></div>
+        <div class="day-row">
+            <div class="day-label">Monday</div>
+            <div class="meal-slot"><b>Breakfast</b> Scrambled Eggs</div>
+            <div class="meal-slot"><b>Lunch</b> Chicken Adobo</div>
+            <div class="meal-slot"><b>Dinner</b> Grilled Fish</div>
         </div>
 
-        <div style="margin-top: 40px; padding: 20px; border-radius: 15px; background: var(--pink-light); text-align: center;">
-            <p style="margin: 0; font-weight: 600;"><i class="fa-solid fa-lightbulb"></i> Pro-tip: You have enough ingredients for <b>3</b> more dishes!</p>
+        <div class="day-row">
+            <div class="day-label">Tuesday</div>
+            <div class="meal-slot"><b>Breakfast</b> Garlic Rice & Egg</div>
+            <div class="meal-slot"><b>Lunch</b> Sinigang na Baboy</div>
+            <div class="meal-slot"><b>Dinner</b> Chop Suey</div>
         </div>
+
+        <div class="day-row">
+            <div class="day-label">Wednesday</div>
+            <div class="meal-slot" style="border: 1px dashed #ccc; background: none;"><b>Breakfast</b> Empty</div>
+            <div class="meal-slot"><b>Lunch</b> Beef Pares</div>
+            <div class="meal-slot"><b>Dinner</b> Salad</div>
+        </div>
+        
+        <p style="text-align: center; color: #888; margin-top: 30px; font-size: 0.9rem;">
+            <i class="fa-solid fa-info-circle"></i> Showing plan for Mar 13 - Mar 19, 2026
+        </p>
     </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
 </body>
 </html>

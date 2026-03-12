@@ -2,52 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UlamFinder | Premium</title>
+    <title>UlamFinder | Premium Pantry</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav style="padding: 40px 10%; display: flex; justify-content: space-between; align-items: center;">
-        <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin:0;">Ulam<span>Finder</span></h1>
+    <nav class="navbar">
+        <a href="index.html" class="logo">Ulam<span>Finder</span></a>
+        <div style="display: flex; gap: 25px;">
+            <a href="pantry.html" style="text-decoration: none; color: inherit; font-weight: 600;">Pantry</a>
+            <a href="mealplan.html" style="text-decoration: none; color: inherit; font-weight: 600;">Meal Plan</a>
+            <a href="login.html" style="text-decoration: none; color: inherit; font-weight: 600;">Login</a>
+        </div>
     </nav>
 
-    <section class="features">
+    <header class="hero">
+        <div class="hero-content" data-aos="fade-right">
+            <h1>Connect your <span>pantry</span> to your plate.</h1>
+            <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
+            <a href="#dashboard" class="btn-main">Start Planning</a>
+        </div>
+        <div class="hero-image" data-aos="zoom-in">
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000">
+        </div>
+    </header>
+
+    <section id="dashboard" class="features">
         <a href="scanner.html" class="card" data-aos="fade-up">
-            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-camera-viewfinder"></i>
-                <h3>Pantry Scanner</h3>
-                <p>Use your back camera to identify food instantly.</p>
-            </div>
+            <i class="fa-solid fa-camera-viewfinder icon-scan"></i>
+            <h3>Pantry Scanner</h3>
+            <p>AI recognition for your groceries. Just point and log.</p>
         </a>
 
         <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
-            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-wand-magic-sparkles"></i>
-                <h3>Magic Suggestions</h3>
-                <p>AI recipes based on your actual inventory.</p>
-            </div>
+            <i class="fa-solid fa-wand-magic-sparkles icon-magic"></i>
+            <h3>Magic Suggestions</h3>
+            <p>Recipes based on what you have in your stock right now.</p>
         </a>
 
         <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
-            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=600" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-calendar-check"></i>
-                <h3>Weekly Planner</h3>
-                <p>Your scheduled meals with false data view.</p>
-            </div>
+            <i class="fa-solid fa-calendar-check icon-plan"></i>
+            <h3>Weekly Planner</h3>
+            <p>Your full 7-day meal schedule. See your plan at a glance.</p>
         </a>
 
         <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
-            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=600" class="card-img">
-            <div class="card-content">
-                <i class="fa-solid fa-chart-line"></i>
-                <h3>Spending Insights</h3>
-                <p>Visual charts of your grocery habits.</p>
-            </div>
+            <i class="fa-solid fa-chart-line icon-insight"></i>
+            <h3>Insights</h3>
+            <p>Track spending and food waste with visual data charts.</p>
         </a>
     </section>
 

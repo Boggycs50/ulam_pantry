@@ -2,49 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spending | UlamFinder</title>
+    <title>Spending Insights | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; --bg: #fff9f9; }
-        body { font-family: sans-serif; background: var(--bg); color: var(--dark); padding: 40px 20px; display: flex; flex-direction: column; align-items: center; }
-        
-        .stat-card { background: linear-gradient(135deg, var(--mint), #4eb09b); color: white; padding: 40px; border-radius: 30px; text-align: center; width: 100%; max-width: 350px; box-shadow: 0 15px 30px rgba(91, 201, 177, 0.3); margin-bottom: 30px; }
-        .stat-card small { opacity: 0.8; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 1px; }
-        .stat-card h2 { font-size: 3rem; margin: 10px 0; }
-
-        .input-box { background: white; padding: 30px; border-radius: 24px; width: 100%; max-width: 350px; display: flex; gap: 10px; }
-        input { flex: 1; padding: 15px; border-radius: 12px; border: 2px solid #f0f0f0; outline: none; }
-        .add-btn { background: var(--dark); color: white; border: none; padding: 15px 25px; border-radius: 12px; font-weight: bold; }
-        
-        .home-btn { margin-top: 30px; text-decoration: none; color: var(--mint); font-weight: bold; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        td, th { padding: 15px; text-align: left; border-bottom: 1px solid var(--pink-light); }
+        .bar-container { height: 10px; background: #eee; border-radius: 10px; margin: 10px 0; overflow: hidden; }
+        .bar-fill { height: 100%; background: var(--mint-complement); width: 72%; }
     </style>
 </head>
 <body>
-    <div class="stat-card">
-        <small>Current Monthly Spending</small>
-        <h2 id="total">₱0</h2>
-        <i class="fa-solid fa-chart-line"></i>
+    <div class="nav-header">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
     </div>
 
-    <div class="input-box">
-        <input type="number" id="amount" placeholder="0.00">
-        <button class="add-btn" onclick="addCost()">ADD</button>
+    <div class="container">
+        <h2>Monthly Spending Goal</h2>
+        <h3 style="margin-bottom: 5px;">₱8,640.00 / ₱12,000.00</h3>
+        <div class="bar-container"><div class="bar-fill"></div></div>
+        <p style="font-size: 0.8rem; color: #888;">You are doing great! You've saved 15% compared to last month.</p>
+
+        <h2 style="margin-top: 40px;">Recent Grocery Logs</h2>
+        <table>
+            <tr><th>Date</th><th>Merchant</th><th>Amount</th></tr>
+            <tr><td>Mar 12</td><td>SM Supermarket</td><td>₱2,450.00</td></tr>
+            <tr><td>Mar 10</td><td>Savemore</td><td>₱1,120.00</td></tr>
+            <tr><td>Mar 05</td><td>Wet Market</td><td>₱850.00</td></tr>
+        </table>
     </div>
-
-    <a href="index.html" class="home-btn"><i class="fa-solid fa-arrow-left"></i> Back to Dashboard</a>
-
-    <script>
-        let costs=JSON.parse(localStorage.getItem("costs")) || []
-        function addCost(){
-            let amt=Number(document.getElementById("amount").value)
-            if(amt > 0){ costs.push(amt); localStorage.setItem("costs",JSON.stringify(costs)); update(); document.getElementById("amount").value=""; }
-        }
-        function update(){
-            let total=costs.reduce((a,b)=>a+b,0)
-            document.getElementById("total").innerText="₱" + total.toLocaleString()
-        }
-        update()
-    </script>
 </body>
 </html>

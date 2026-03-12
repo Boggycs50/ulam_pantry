@@ -2,83 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pantry | UlamFinder</title>
+    <title>My Pantry | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; --bg: #fff9f9; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        
-        .nav-header { width: 100%; max-width: 500px; margin-bottom: 20px; animation: fadeIn 0.8s ease; }
-        .back-btn { text-decoration: none; color: var(--dark); font-weight: 600; display: flex; align-items: center; gap: 8px; }
-
-        .container { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); width: 100%; max-width: 450px; animation: slideUp 0.6s ease-out; }
-        .header-icon { font-size: 3rem; color: var(--pink); margin-bottom: 15px; text-align: center; }
-        h1 { text-align: center; margin-top: 0; }
-        h1 span { color: var(--pink); }
-
-        .input-group { display: flex; gap: 10px; margin-bottom: 30px; }
-        input { flex: 1; padding: 14px; border: 2px solid #eee; border-radius: 50px; outline: none; }
-        input:focus { border-color: var(--mint); }
-        
-        button.add-btn { background: var(--mint); color: white; border: none; padding: 14px 25px; border-radius: 50px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        button.add-btn:hover { transform: scale(1.05); background: #4eb09b; }
-
-        ul { list-style: none; padding: 0; }
-        li { background: #fafafa; padding: 15px 20px; margin-bottom: 10px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; border-left: 5px solid var(--mint); transition: 0.2s; }
-        li:hover { transform: translateX(5px); background: #fff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-
-        .del-btn { color: #ff6b6b; background: none; border: none; cursor: pointer; font-size: 1.1rem; }
-
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes slideUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
-    </style>
 </head>
 <body>
-
     <div class="nav-header">
-        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
     </div>
 
     <div class="container">
-        <div class="header-icon"><i class="fa-solid fa-basket-shopping"></i></div>
-        <h1>My <span>Pantry</span></h1>
-        
-        <div class="input-group">
-            <input id="foodInput" placeholder="Add ingredients...">
-            <button class="add-btn" onclick="addFood()">Add</button>
+        <div style="text-align: center; margin-bottom: 30px;">
+            <i class="fa-solid fa-box-archive" style="font-size: 3rem; color: var(--mint-complement);"></i>
+            <h1 style="font-family: 'Playfair Display';">Pantry <span>Inventory</span></h1>
         </div>
 
-        <ul id="foodList"></ul>
-    </div>
+        <div style="display: flex; gap: 10px; margin-bottom: 30px;">
+            <input type="text" placeholder="Add new item..." style="flex: 1; padding: 15px; border-radius: 15px; border: 1px solid var(--pink-light); outline: none;">
+            <button class="btn" style="padding: 10px 25px;">Add Item</button>
+        </div>
 
-    <script>
-        let pantry = JSON.parse(localStorage.getItem("pantry")) || []
-        function render(){
-            let list=document.getElementById("foodList")
-            list.innerHTML=""
-            pantry.forEach((food, index)=>{
-                let li=document.createElement("li")
-                li.innerHTML=`${food} <button class="del-btn" onclick="remove(${index})"><i class="fa-solid fa-trash-can"></i></button>`
-                list.appendChild(li)
-            })
-        }
-        function addFood(){
-            let food=document.getElementById("foodInput").value.trim()
-            if(food){
-                pantry.push(food);
-                localStorage.setItem("pantry",JSON.stringify(pantry));
-                document.getElementById("foodInput").value = "";
-                render();
-            }
-        }
-        function remove(i){
-            pantry.splice(i, 1);
-            localStorage.setItem("pantry",JSON.stringify(pantry));
-            render();
-        }
-        render()
-    </script>
+        <div id="pantryList">
+            <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                <span><i class="fa-solid fa-egg" style="color: #F7DC6F;"></i> &nbsp; Fresh Eggs (12 pcs)</span>
+                <button style="border:none; background:none; color:#ff6b6b; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                <span><i class="fa-solid fa-bowl-rice" style="color: #AED6F1;"></i> &nbsp; Jasmine Rice (5kg)</span>
+                <button style="border:none; background:none; color:#ff6b6b; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+            </div>
+            <div style="display: flex; justify-content: space-between; padding: 15px; border-bottom: 1px solid #f0f0f0;">
+                <span><i class="fa-solid fa-drumstick-bite" style="color: var(--pink-accent);"></i> &nbsp; Chicken Breast (1kg)</span>
+                <button style="border:none; background:none; color:#ff6b6b; cursor:pointer;"><i class="fa-solid fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

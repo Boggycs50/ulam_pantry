@@ -2,42 +2,37 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Scanner | UlamFinder</title>
+    <title>AI Scanner | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; }
-        body { font-family: sans-serif; background: #000; color: white; margin: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-        
-        .back-btn { position: absolute; top: 20px; left: 20px; color: white; text-decoration: none; z-index: 100; font-weight: bold; }
-        
-        .scanner-frame { position: relative; width: 85%; max-width: 350px; aspect-ratio: 3/4; border-radius: 40px; overflow: hidden; border: 4px solid white; box-shadow: 0 0 50px rgba(91, 201, 177, 0.4); }
-        video { width: 100%; height: 100%; object-fit: cover; }
-
-        .laser { position: absolute; top: 0; width: 100%; height: 4px; background: var(--mint); box-shadow: 0 0 20px var(--mint); animation: scan 2s infinite; }
-        @keyframes scan { 0% { top: 0% } 50% { top: 100% } 100% { top: 0% } }
-
-        .ui { margin-top: 30px; text-align: center; }
-        .scan-btn { background: var(--mint); border: none; padding: 15px 40px; border-radius: 50px; color: white; font-weight: bold; font-size: 1rem; }
+        body { background: #111; color: white; }
+        .scanner-window { 
+            width: 90%; max-width: 400px; height: 500px; margin: 20px auto; 
+            border: 3px solid var(--mint-complement); border-radius: 30px; 
+            position: relative; overflow: hidden; background: #222;
+        }
+        .scan-line { width: 100%; height: 2px; background: var(--mint-complement); position: absolute; box-shadow: 0 0 15px var(--mint-complement); animation: scan 2s infinite; }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
     </style>
 </head>
 <body>
-    <a href="index.html" class="back-btn"><i class="fa-solid fa-chevron-left"></i> Home</a>
-
-    <div class="scanner-frame">
-        <div class="laser"></div>
-        <video id="camera" autoplay playsinline></video>
+    <div class="nav-header">
+        <a href="index.html" class="back-link" style="background: rgba(255,255,255,0.1); color: white; border: none;">
+            <i class="fa-solid fa-chevron-left"></i> Exit Scanner
+        </a>
     </div>
 
-    <div class="ui">
-        <h2>Pantry <span>Scanner</span></h2>
-        <p style="opacity: 0.6;">Point at an ingredient to identify it</p>
-        <button class="scan-btn">CAPTURE</button>
+    <div class="scanner-window">
+        <div class="scan-line"></div>
+        <div style="position: absolute; bottom: 20px; width: 100%; text-align: center; color: var(--mint-complement);">
+            <i class="fa-solid fa-circle-notch fa-spin"></i> Analyzing Ingredients...
+        </div>
     </div>
 
-    <script>
-        navigator.mediaDevices.getUserMedia({video:{facingMode: "environment"}})
-        .then(stream=>{ document.getElementById("camera").srcObject=stream })
-    </script>
+    <div style="text-align: center; padding: 20px;">
+        <h3>Point camera at your food</h3>
+        <p style="opacity: 0.6;">UlamFinder AI is detecting items...</p>
+    </div>
 </body>
 </html>

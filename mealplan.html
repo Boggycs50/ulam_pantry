@@ -2,81 +2,34 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meal Plan | UlamFinder</title>
+    <title>Weekly Plan | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --mint: #5bc9b1; --pink: #f4a2b9; --dark: #3d1c1c; --bg: #fff9f9; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--dark); margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; }
-        
-        .nav-header { width: 100%; max-width: 600px; margin-bottom: 20px; }
-        .back-btn { text-decoration: none; color: var(--dark); font-weight: 600; display: flex; align-items: center; gap: 8px; }
-
-        .card { background: white; padding: 30px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.03); width: 100%; max-width: 550px; animation: slideIn 0.5s ease; }
-        .icon { font-size: 2.5rem; color: var(--mint); margin-bottom: 10px; text-align: center; }
-        h1 { text-align: center; font-size: 1.5rem; margin-bottom: 30px; }
-
-        .row { display: flex; gap: 10px; margin-bottom: 20px; }
-        select, input { padding: 12px; border: 2px solid #f0f0f0; border-radius: 12px; font-size: 0.9rem; }
-        select { flex: 1; }
-        input { flex: 2; }
-        
-        .save-btn { background: var(--mint); color: white; border: none; padding: 0 25px; border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.3s; }
-        .save-btn:hover { background: #4eb09b; }
-
-        .meal-card { background: #fff9fa; border: 1px solid #ffeef1; padding: 15px; border-radius: 15px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        .meal-card b { color: var(--pink); text-transform: uppercase; font-size: 0.75rem; display: block; }
-        
-        @keyframes slideIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-    </style>
 </head>
 <body>
-
     <div class="nav-header">
-        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
     </div>
 
-    <div class="card">
-        <div class="icon"><i class="fa-solid fa-calendar-day"></i></div>
-        <h1>Weekly <span>Meal Plan</span></h1>
-        
-        <div class="row">
-            <select id="day">
-                <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
-                <option>Thursday</option><option>Friday</option><option>Saturday</option><option>Sunday</option>
-            </select>
-            <input id="meal" placeholder="What's for dinner?">
-            <button class="save-btn" onclick="saveMeal()">Save</button>
+    <div class="container">
+        <div style="text-align: center; margin-bottom: 40px;">
+            <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem;">Your Weekly <span>Schedule</span></h1>
+            <p style="color: #888;">Here is what you have planned for the next 7 days.</p>
         </div>
 
-        <div id="planner"></div>
-    </div>
+        <div class="weekly-grid">
+            <div class="day-card"><h4>Monday</h4><p>Chicken Adobo</p></div>
+            <div class="day-card"><h4>Tuesday</h4><p>Sinigang na Hipon</p></div>
+            <div class="day-card"><h4>Wednesday</h4><p>Beef Pares</p></div>
+            <div class="day-card"><h4>Thursday</h4><p>Pork Menudo</p></div>
+            <div class="day-card"><h4>Friday</h4><p>Ginisang Monggo</p></div>
+            <div class="day-card"><h4>Saturday</h4><p>Chicken Curry</p></div>
+            <div class="day-card"><h4>Sunday</h4><p>Family Samgyupsal</p></div>
+        </div>
 
-    <script>
-        let meals = JSON.parse(localStorage.getItem("meals")) || []
-        function render(){
-            let list=document.getElementById("planner")
-            list.innerHTML=""
-            meals.forEach((m, i)=>{
-                let div=document.createElement("div")
-                div.className="meal-card"
-                div.innerHTML=`<div><b>${m.day}</b> ${m.meal}</div> <button style="border:none; background:none; color:#ff6b6b; cursor:pointer;" onclick="del(${i})"><i class="fa-solid fa-circle-xmark"></i></button>`
-                list.appendChild(div)
-            })
-        }
-        function saveMeal(){
-            let day=document.getElementById("day").value
-            let meal=document.getElementById("meal").value.trim()
-            if(meal){
-                meals.push({day,meal})
-                localStorage.setItem("meals",JSON.stringify(meals))
-                document.getElementById("meal").value = ""
-                render()
-            }
-        }
-        function del(i){ meals.splice(i,1); localStorage.setItem("meals",JSON.stringify(meals)); render(); }
-        render()
-    </script>
+        <div style="margin-top: 40px; padding: 20px; border-radius: 15px; background: var(--pink-light); text-align: center;">
+            <p style="margin: 0; font-weight: 600;"><i class="fa-solid fa-lightbulb"></i> Pro-tip: You have enough ingredients for <b>3</b> more dishes!</p>
+        </div>
+    </div>
 </body>
 </html>

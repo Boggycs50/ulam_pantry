@@ -3,74 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UlamFinder | Pantry Tracker</title>
+    <title>UlamFinder | Home</title>
     <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:ital,wght@0,800;1,800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&family=Playfair+Display:wght@800&display=swap" rel="stylesheet">
 </head>
-
 <body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">UlamFinder</a>
+        <div class="nav-links">
+            <a href="pantry.html">Pantry</a>
+            <a href="mealplan.html">Meal Plan</a>
+            <a href="login.html">Logout</a>
+        </div>
+    </nav>
 
-<nav class="navbar">
-    <a href="index.html" class="logo">Ulam<span>Finder</span></a>
-    <div class="nav-links">
-        <a href="https://www.allrecipes.com" target="_blank">Recipes</a>
-        <a href="pantry.html">Pantry</a>
-        <a href="mealplan.html">Meal Plan</a>
-        <a href="login.html" class="login-nav">Login</a>
-    </div>
-</nav>
+    <section class="features">
+        <a href="scanner.html" class="card">
+            <i class="fa-solid fa-camera-viewfinder" style="font-size: 2.5rem; color: var(--mint-complement); margin-bottom: 15px;"></i>
+            <h3>Scanner</h3>
+            <p>Log groceries instantly using your camera.</p>
+        </a>
+        <a href="suggest.html" class="card">
+            <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 2.5rem; color: var(--pink-accent); margin-bottom: 15px;"></i>
+            <h3>Suggestions</h3>
+            <p>Smart recipes based on your stock.</p>
+        </a>
+        <a href="mealplan.html" class="card">
+            <i class="fa-solid fa-calendar-week" style="font-size: 2.5rem; color: #5DADE2; margin-bottom: 15px;"></i>
+            <h3>Weekly Plan</h3>
+            <p>View your full schedule for the week.</p>
+        </a>
+        <a href="insights.html" class="card">
+            <i class="fa-solid fa-chart-pie" style="font-size: 2.5rem; color: var(--deep-berry); margin-bottom: 15px;"></i>
+            <h3>Insights</h3>
+            <p>Track your spending and waste.</p>
+        </a>
+    </section>
 
-<header class="hero">
-    <div class="hero-text" data-aos="fade-right">
-        <h1>Connect your <span>pantry</span> to your plate.</h1>
-        <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
-        <a href="mealplan.html" class="btn">Start Planning</a>
-    </div>
-    <div class="hero-image" data-aos="zoom-in">
-        <div class="image-blob"></div>
-        <img src="https://images.unsplash.com/photo-1547032175-7fc8c7bd15b3?auto=format&fit=crop&q=80&w=800" alt="Fresh Groceries">
-    </div>
-</header>
-
-<section class="features">
-    <a href="scanner.html" class="card" data-aos="fade-up">
-        <div class="card-icon"><i class="fa-solid fa-camera-viewfinder"></i></div>
-        <h3>Pantry Scanner</h3>
-        <p>Use your camera to scan groceries and log them into your pantry.</p>
-    </a>
-
-    <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
-        <div class="card-icon pink"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <h3>Use What You Have</h3>
-        <p>Get recipe suggestions based on the food you logged.</p>
-    </a>
-
-    <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
-        <div class="card-icon"><i class="fa-solid fa-calendar-check"></i></div>
-        <h3>Weekly Planner</h3>
-        <p>Plan breakfast, lunch and dinner for the week.</p>
-    </a>
-
-    <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
-        <div class="card-icon pink"><i class="fa-solid fa-chart-pie"></i></div>
-        <h3>Spending Insights</h3>
-        <p>Track your grocery spending and save more monthly.</p>
-    </a>
-</section>
-
-<footer>
-    <p>© 2026 UlamFinder — Making healthy eating effortless.</p>
-</footer>
-
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script>
-    AOS.init({
-        duration: 800,
-        once: true
-    });
-</script>
-
+    <footer>© 2026 UlamFinder — Healthy Eating Made Simple</footer>
 </body>
 </html>

@@ -2,49 +2,26 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Suggest | UlamFinder</title>
+    <title>Recipe Magic | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root { --mint: #5bc9b1; --pink: #f4a2b9; --bg: #fff9f9; }
-        body { font-family: 'Inter', sans-serif; background: var(--bg); margin: 0; display: flex; flex-direction: column; align-items: center; padding: 40px 20px; }
-        .nav-header { width: 100%; max-width: 400px; margin-bottom: 20px; }
-        
-        .card { background: white; padding: 40px; border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.05); text-align: center; width: 100%; max-width: 400px; animation: bounceIn 0.8s; }
-        .magic-icon { font-size: 3.5rem; color: var(--pink); margin-bottom: 20px; animation: float 3s infinite ease-in-out; }
-        
-        .btn { background: var(--mint); color: white; border: none; padding: 18px 30px; border-radius: 50px; font-weight: 700; width: 100%; cursor: pointer; transition: 0.3s; box-shadow: 0 8px 20px rgba(91,201,177,0.3); }
-        .btn:hover { transform: translateY(-3px); background: #4eb09b; }
-
-        #result { margin-top: 30px; padding: 20px; border-radius: 20px; background: #fdf2f5; display: none; font-weight: bold; color: #3d1c1c; font-size: 1.2rem; border: 2px dashed var(--pink); animation: fadeInUp 0.5s; }
-        
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-        @keyframes bounceIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
-    </style>
 </head>
 <body>
-    <div class="nav-header"><a href="index.html" style="text-decoration:none; color:black; font-weight:bold;"><i class="fa-solid fa-house"></i> Home</a></div>
-    <div class="card">
-        <div class="magic-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
-        <h1>Suggest <span>Recipe</span></h1>
-        <p style="color: #888; margin-bottom: 30px;">Click below to find a dish using your current pantry items.</p>
-        <button class="btn" onclick="suggest()">FIND A RECIPE</button>
-        <div id="result"></div>
+    <div class="nav-header">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-chevron-left"></i> Dashboard</a>
     </div>
 
-    <script>
-        function suggest(){
-            let pantry = JSON.parse(localStorage.getItem("pantry")) || []
-            let recipes={ egg:"Creamy Omelette", rice:"Garlic Fried Rice", chicken:"Adobo bowl", bread:"Classic Sandwich" }
-            let found = "No match found!";
-            for(let item of pantry){
-                if(recipes[item.toLowerCase()]){ found = "Chef suggests: " + recipes[item.toLowerCase()]; break; }
-            }
-            let res = document.getElementById("result");
-            res.innerText = found;
-            res.style.display = "block";
-        }
-    </script>
+    <div class="container" style="text-align: center;">
+        <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 4rem; color: var(--pink-accent); margin-bottom: 20px;"></i>
+        <h1 style="font-family: 'Playfair Display';">Use What <span>You Have</span></h1>
+        <p style="color: #888; margin-bottom: 30px;">We scanned your pantry and found the perfect match.</p>
+
+        <button class="btn" style="width: 100%; font-size: 1.1rem;">GENERATE RECIPE</button>
+
+        <div style="margin-top: 30px; padding: 30px; border-radius: 20px; background: var(--bg-cream); border: 2px dashed var(--pink-accent);">
+            <h2 style="margin: 0; color: var(--deep-berry);">Chicken Adobo Bowl</h2>
+            <p style="font-size: 0.9rem; color: #666;">Estimated time: 30 mins | Budget Friendly</p>
+        </div>
+    </div>
 </body>
 </html>

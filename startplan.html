@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Plan Your Meals | UlamFinder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header class="subpage-header">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Cancel</a>
+    </header>
+
+    <div class="container" style="max-width: 600px;">
+        <div class="card" style="padding: 40px;">
+            <h2 style="font-family: 'Playfair Display';">Create <span>Meal Plan</span></h2>
+            <p>Select a day and assign a recipe.</p>
+            
+            <form onsubmit="alert('Plan Saved Successfully!'); return false;" style="margin-top: 30px;">
+                <label style="display: block; margin-bottom: 8px; font-weight: 700;">Select Day</label>
+                <select style="width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #eee; margin-bottom: 20px;">
+                    <option>Monday</option><option>Tuesday</option><option>Wednesday</option>
+                </select>
+
+                <label style="display: block; margin-bottom: 8px; font-weight: 700;">Assign Recipe</label>
+                <input type="text" placeholder="e.g. Pork Menudo" style="width: 100%; padding: 15px; border-radius: 15px; border: 1px solid #eee; margin-bottom: 30px;">
+                
+                <button type="submit" class="btn-main" style="width: 100%;">Save to Weekly Plan</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,23 +1,164 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Pantry Scanner</title>
-</head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pantry Scanner | UlamFinder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-mint: #5bc9b1;
+            --primary-pink: #f4a2b9;
+            --dark-text: #3d1c1c;
+            --bg-color: #fff9f9;
+        }
 
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--dark-text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .scanner-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            background: #000;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            border: 8px solid #fff;
+        }
+
+        /* The Video Feed */
+        #camera {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* Scanning Animation Overlay */
+        .scan-line {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary-mint);
+            box-shadow: 0 0 15px var(--primary-mint);
+            animation: scan 2s linear infinite;
+            z-index: 10;
+        }
+
+        @keyframes scan {
+            0% { top: 0%; }
+            100% { top: 100%; }
+        }
+
+        .scanner-ui {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        h1 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        h1 span {
+            color: var(--primary-pink);
+        }
+
+        p {
+            color: #888;
+            margin-bottom: 25px;
+        }
+
+        .capture-btn {
+            background-color: var(--primary-mint);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(91, 201, 177, 0.3);
+        }
+
+        .capture-btn:hover {
+            transform: scale(1.05);
+            background-color: #4eb09b;
+        }
+
+        /* Viewfinder corners */
+        .corner {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            border: 4px solid white;
+            z-index: 11;
+        }
+        .top-left { top: 20px; left: 20px; border-right: 0; border-bottom: 0; }
+        .top-right { top: 20px; right: 20px; border-left: 0; border-bottom: 0; }
+        .bottom-left { bottom: 20px; left: 20px; border-right: 0; border-top: 0; }
+        .bottom-right { bottom: 20px; right: 20px; border-left: 0; border-top: 0; }
+
+    </style>
+</head>
 <body>
 
-<h1>Pantry Scanner</h1>
+    <div class="scanner-ui">
+        <h1>Pantry <span>Scanner</span></h1>
+        <p>Align the item within the frame to scan</p>
+    </div>
 
-<video id="camera" autoplay width="300"></video>
+    <div class="scanner-container">
+        <div class="corner top-left"></div>
+        <div class="corner top-right"></div>
+        <div class="corner bottom-left"></div>
+        <div class="corner bottom-right"></div>
+        
+        <div class="scan-line"></div>
+        
+        <video id="camera" autoplay playsinline></video>
+    </div>
 
-<script>
+    <div class="scanner-ui">
+        <button class="capture-btn" onclick="takeSnapshot()">Analyze Item</button>
+    </div>
 
-navigator.mediaDevices.getUserMedia({video:true})
-.then(stream=>{
-document.getElementById("camera").srcObject=stream
-})
+    <script>
+        // Access the camera
+        const video = document.getElementById("camera");
 
-</script>
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+            navigator.mediaDevices.getUserMedia({ 
+                video: { facingMode: "environment" } // Prefers back camera on mobile
+            })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                console.error("Camera access denied: ", err);
+                alert("Please enable camera permissions to use the scanner.");
+            });
+        }
+
+        function takeSnapshot() {
+            // This is where you'd normally trigger an AI API
+            alert("Scanning item... This would connect to your backend or an AI service like Gemini!");
+        }
+    </script>
 
 </body>
 </html>

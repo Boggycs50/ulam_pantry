@@ -2,41 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>UlamFinder | Home</title>
+    <title>UlamFinder | Premium</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
-    <nav style="padding: 30px 8%; display: flex; justify-content: space-between; align-items: center;">
-        <h1 style="font-family: 'Playfair Display'; color: var(--deep-berry); margin:0;">Ulam<span style="color:var(--pink-accent)">Finder</span></h1>
+    <nav style="padding: 40px 10%; display: flex; justify-content: space-between; align-items: center;">
+        <h1 style="font-family: 'Playfair Display'; font-size: 2.5rem; margin:0;">Ulam<span>Finder</span></h1>
     </nav>
 
     <section class="features">
-        <a href="scanner.html" class="card">
-            <i class="fa-solid fa-camera-viewfinder" style="color: var(--mint-complement);"></i>
-            <h3>Pantry Scanner</h3>
-            <p>AI recognition for your groceries.</p>
+        <a href="scanner.html" class="card" data-aos="fade-up">
+            <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&q=80&w=600" class="card-img">
+            <div class="card-content">
+                <i class="fa-solid fa-camera-viewfinder"></i>
+                <h3>Pantry Scanner</h3>
+                <p>Use your back camera to identify food instantly.</p>
+            </div>
         </a>
 
-        <a href="suggest.html" class="card">
-            <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--pink-accent);"></i>
-            <h3>Magic Suggestions</h3>
-            <p>Recipes based on what you have.</p>
+        <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
+            <img src="https://images.unsplash.com/photo-1490645935967-10de6ba17061?auto=format&fit=crop&q=80&w=600" class="card-img">
+            <div class="card-content">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Magic Suggestions</h3>
+                <p>AI recipes based on your actual inventory.</p>
+            </div>
         </a>
 
-        <a href="mealplan.html" class="card">
-            <i class="fa-solid fa-calendar-check" style="color: #5DADE2;"></i>
-            <h3>Weekly Planner</h3>
-            <p>Your full 7-day meal schedule.</p>
+        <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
+            <img src="https://images.unsplash.com/photo-1506784983877-45594efa4cbe?auto=format&fit=crop&q=80&w=600" class="card-img">
+            <div class="card-content">
+                <i class="fa-solid fa-calendar-check"></i>
+                <h3>Weekly Planner</h3>
+                <p>Your scheduled meals with false data view.</p>
+            </div>
         </a>
 
-        <a href="insights.html" class="card">
-            <i class="fa-solid fa-chart-line" style="color: var(--deep-berry);"></i>
-            <h3>Insights</h3>
-            <p>Track spending and food waste.</p>
+        <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
+            <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=600" class="card-img">
+            <div class="card-content">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Spending Insights</h3>
+                <p>Visual charts of your grocery habits.</p>
+            </div>
         </a>
     </section>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>

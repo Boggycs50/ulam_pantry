@@ -89,3 +89,31 @@ body {
 .icon-magic { color: #FF85A1 !important; }
 .icon-plan { color: #5DADE2 !important; }
 .icon-insight { color: #4A235A !important; }
+
+/* Standardized Header for all sub-pages */
+.subpage-header {
+    display: flex;
+    justify-content: center; /* This centers the button */
+    align-items: center;
+    padding: 40px 0;
+    width: 100%;
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--deep-text);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 30px;
+    background: white;
+    border-radius: 50px;
+    border: 1px solid var(--pink-brand);
+    transition: 0.3s;
+}
+
+.back-link:hover {
+    background: var(--pink-brand);
+    color: white;
+}

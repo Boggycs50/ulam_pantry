@@ -2,45 +2,31 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AI Scanner | UlamFinder</title>
+    <title>Scanner | UlamFinder</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body style="background: #000; color: white;">
-
-    <div class="nav-header">
-        <a href="index.html" class="back-link" style="background: rgba(255,255,255,0.1); color: white;">
-            <i class="fa-solid fa-arrow-left"></i> Exit Scanner
+    <header class="subpage-header">
+        <a href="index.html" class="back-link" style="background: rgba(255,255,255,0.1); border: none; color: white;">
+            <i class="fa-solid fa-xmark"></i> Close Scanner
         </a>
+    </header>
+
+    <div style="position: relative; width: 85%; max-width: 400px; margin: 0 auto; height: 60vh; border: 2px solid var(--mint-brand); border-radius: 40px; overflow: hidden;">
+        <video id="cam" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: var(--mint-brand); box-shadow: 0 0 15px var(--mint-brand); animation: scanLine 3s infinite;"></div>
     </div>
 
-    <div style="position: relative; width: 85%; max-width: 450px; margin: 20px auto; border-radius: 40px; overflow: hidden; height: 65vh; border: 3px solid var(--mint-complement); box-shadow: 0 0 50px rgba(72, 201, 176, 0.3);">
-        <video id="webcam" autoplay playsinline style="width: 100%; height: 100%; object-fit: cover;"></video>
-        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--mint-complement); box-shadow: 0 0 20px var(--mint-complement); animation: scanLine 4s infinite ease-in-out;"></div>
-        <div style="position: absolute; top: 20px; left: 20px; width: 40px; height: 40px; border-top: 4px solid white; border-left: 4px solid white;"></div>
-        <div style="position: absolute; bottom: 20px; right: 20px; width: 40px; height: 40px; border-bottom: 4px solid white; border-right: 4px solid white;"></div>
-    </div>
-
-    <div style="text-align: center; padding: 20px;">
-        <i class="fa-solid fa-camera-viewfinder" style="font-size: 3rem; color: var(--mint-complement); margin-bottom: 15px;"></i>
-        <h2 style="font-family: 'Playfair Display';">AI <span style="color: var(--mint-complement)">Scanning</span> Active</h2>
-        <p style="opacity: 0.6;">Point at your ingredients to add them to your pantry.</p>
+    <div style="text-align: center; padding: 40px;">
+        <h2 style="font-family: 'Playfair Display';">Scanning for QR...</h2>
+        <p style="opacity: 0.6;">Align code within the frame</p>
     </div>
 
     <script>
-        const video = document.getElementById('webcam');
-        // Force the BACK camera
-        navigator.mediaDevices.getUserMedia({ 
-            video: { facingMode: "environment" } 
-        })
-        .then(stream => {
-            video.srcObject = stream;
-        })
-        .catch(err => {
-            console.error("Back camera not available, falling back to default.", err);
-            navigator.mediaDevices.getUserMedia({ video: true })
-            .then(stream => { video.srcObject = stream; });
-        });
+        navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } })
+        .then(s => document.getElementById('cam').srcObject = s);
     </script>
+    <style>@keyframes scanLine { 0% { top: 0; } 100% { top: 100%; } }</style>
 </body>
 </html>

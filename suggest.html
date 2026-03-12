@@ -4,46 +4,42 @@
     <meta charset="UTF-8">
     <title>Magic Suggestions | UlamFinder</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <div class="nav-header">
-        <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Dashboard</a>
-    </div>
 
-    <div class="container" style="text-align: center; padding-top: 60px;">
-        <div data-aos="zoom-in">
-            <i class="fa-solid fa-wand-magic-sparkles" style="font-size: 4rem; color: var(--pink-accent); margin-bottom: 20px;"></i>
-            <h1 style="font-size: 3rem;">Recipe <span>Magic</span></h1>
-            <p style="color: #666; max-width: 500px; margin: 0 auto 40px;">We've analyzed your current stock. Here is what you can cook right now without going to the store.</p>
-            <button class="btn" style="background: var(--mint-complement); margin-bottom: 50px;">Generate New Idea</button>
+    <header class="subpage-header">
+        <a href="index.html" class="back-link"><i class="fa-solid fa-house"></i> Dashboard</a>
+    </header>
+
+    <div class="container" style="max-width: 1000px;">
+        <div style="text-align: center; margin-bottom: 50px;" data-aos="zoom-in">
+            <i class="fa-solid fa-wand-sparkles" style="font-size: 3rem; color: var(--pink-brand); margin-bottom: 20px;"></i>
+            <h1 style="font-family: 'Playfair Display'; font-size: 3rem;">Magic <span>Suggestions</span></h1>
+            <p>AI-generated recipes based on your current pantry stock.</p>
         </div>
 
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left;">
-            <div class="card" style="padding: 0; overflow: hidden;" data-aos="fade-up">
-                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=500" style="width: 100%; height: 200px; object-fit: cover;">
-                <div style="padding: 25px;">
-                    <span style="color: var(--mint-complement); font-weight: 800; font-size: 0.7rem;">90% MATCH</span>
-                    <h3 style="margin: 10px 0;">Healthy Buddha Bowl</h3>
-                    <p style="font-size: 0.8rem; color: #888;">Uses your: Spinach, Eggs, Rice, and Garlic.</p>
-                    <a href="#" style="color: var(--pink-accent); text-decoration: none; font-weight: 800; font-size: 0.9rem;">View Recipe →</a>
-                </div>
+        <div class="features">
+            <div class="card" data-aos="fade-up">
+                <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&q=80&w=500" style="width: 100%; height: 150px; object-fit: cover; border-radius: 20px; margin-bottom: 20px;">
+                <span style="color: var(--mint-brand); font-weight: 800; font-size: 0.7rem;">READY IN 20 MINS</span>
+                <h3>Healthy Salad Bowl</h3>
+                <p>Uses: Spinach, Eggs, and Garlic from your pantry.</p>
+                <button class="btn-main" style="padding: 10px 20px; font-size: 0.8rem; margin-top: 15px;">View Recipe</button>
             </div>
 
-            <div class="card" style="padding: 0; overflow: hidden;" data-aos="fade-up" data-aos-delay="100">
-                <img src="https://images.unsplash.com/photo-1512058560366-1a51042f5170?auto=format&fit=crop&q=80&w=500" style="width: 100%; height: 200px; object-fit: cover;">
-                <div style="padding: 25px;">
-                    <span style="color: var(--pink-accent); font-weight: 800; font-size: 0.7rem;">READY IN 15 MINS</span>
-                    <h3 style="margin: 10px 0;">Classic Garlic Fried Rice</h3>
-                    <p style="font-size: 0.8rem; color: #888;">Uses your: Day-old Rice, Garlic, and Eggs.</p>
-                    <a href="#" style="color: var(--pink-accent); text-decoration: none; font-weight: 800; font-size: 0.9rem;">View Recipe →</a>
-                </div>
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
+                <img src="https://images.unsplash.com/photo-1512058560366-c80b042639f4?auto=format&fit=crop&q=80&w=500" style="width: 100%; height: 150px; object-fit: cover; border-radius: 20px; margin-bottom: 20px;">
+                <span style="color: var(--pink-brand); font-weight: 800; font-size: 0.7rem;">PANTRY FAVORITE</span>
+                <h3>Garlic Fried Rice</h3>
+                <p>Uses: Rice, Garlic, and Soy Sauce from your stock.</p>
+                <button class="btn-main" style="padding: 10px 20px; font-size: 0.8rem; margin-top: 15px;">View Recipe</button>
             </div>
         </div>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>AOS.init();</script>
+    <script>AOS.init({ duration: 1000 });</script>
 </body>
 </html>

@@ -3,89 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UlamFinder | Connect Your Pantry</title>
-    
+    <title>UlamFinder | Dashboard</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
 
     <nav class="navbar">
-        <a href="index.html" class="logo">Ulam<span>Finder</span></a>
-        <div style="display: flex; gap: 25px;">
-            <a href="pantry.html" style="text-decoration: none; color: inherit; font-weight: 600;">Pantry</a>
-            <a href="mealplan.html" style="text-decoration: none; color: inherit; font-weight: 600;">Meal Plan</a>
-            <a href="login.html" style="text-decoration: none; color: inherit; font-weight: 600;">Login</a>
+        <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+            <a href="index.html" class="logo">Ulam<span>Finder</span></a>
+            <div class="nav-links">
+                <a href="pantry.html">Pantry</a>
+                <a href="suggest.html">Recipes</a>
+                <a href="mealplan.html">Meal Plan</a>
+                <a href="login.html">Login</a>
+                <button class="notif-btn" onclick="toggleNotif()">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="notif-dot"></div>
+                </button>
+            </div>
         </div>
     </nav>
 
-    <header class="hero">
-        <div class="hero-content" data-aos="fade-right">
-            <h1>Connect your <span>pantry</span> to your plate.</h1>
-            <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
-            <a href="#dashboard" class="btn-main">Start Planning</a>
-        </div>
-        <div class="hero-image" data-aos="zoom-in">
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000" alt="Kitchen Pantry">
-        </div>
-    </header>
+    <div class="container">
+        <header class="hero">
+            <div class="hero-text" data-aos="fade-right">
+                <h1>Connect your <span>pantry</span> to your plate.</h1>
+                <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
+                <button class="btn-main" onclick="scrollToDash()">Start Planning</button>
+            </div>
+            <div class="hero-image" data-aos="zoom-in">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000">
+            </div>
+        </header>
 
-    <section id="dashboard" class="features">
-        
-        <a href="scanner.html" class="card" data-aos="fade-up">
-            <i class="fa-solid fa-camera-viewfinder icon-scan"></i>
-            <h3>Pantry Scanner</h3>
-            <p>AI recognition for your groceries. Just point and log.</p>
-        </a>
+        <section id="dashboard" class="features">
+            <a href="scanner.html" class="card" data-aos="fade-up">
+                <i class="fa-solid fa-camera-viewfinder"></i>
+                <h3>AI Scanner</h3>
+                <p>Use your back camera to scan QR codes or identify ingredients instantly.</p>
+            </a>
 
-        <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
-            <i class="fa-solid fa-wand-magic-sparkles icon-magic"></i>
-            <h3>Magic Suggestions</h3>
-            <p>Recipes based on what you have in your stock right now.</p>
-        </a>
+            <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="100">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Magic Suggestions</h3>
+                <p>Generate recipe ideas based on your current pantry stock.</p>
+            </a>
 
-        <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
-            <i class="fa-solid fa-calendar-check icon-plan"></i>
-            <h3>Weekly Planner</h3>
-            <p>Your full 7-day meal schedule. See your plan at a glance.</p>
-        </a>
+            <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="200">
+                <i class="fa-solid fa-calendar-day"></i>
+                <h3>Weekly Planner</h3>
+                <p>Organize your meals for the next 7 days and track calories.</p>
+            </a>
 
-        <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
-            <i class="fa-solid fa-chart-line icon-insight"></i>
-            <h3>Insights</h3>
-            <p>Track spending and food waste with visual data charts.</p>
-        </a>
+            <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="300">
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Spending Insights</h3>
+                <p>Track your food expenses and see where you can save money.</p>
+            </a>
+        </section>
+    </div>
 
-    </section>
+    <div id="notif-toast" style="position: fixed; bottom: -100px; right: 20px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid var(--pink-brand); z-index: 2000; transition: 0.5s;">
+        <strong style="display: block; color: var(--pink-brand);">Announcement!</strong>
+        <span id="notif-text">Your Chicken Adobo prep starts in 30 minutes!</span>
+    </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // 1. Initialize Animations
-        AOS.init({
-            duration: 1000,
-            once: true
-        });
+        AOS.init({ duration: 1000, once: true });
 
-        // 2. Fix Start Planning Button (Smooth Scroll Function)
-        const planBtn = document.querySelector('.btn-main');
-        if (planBtn) {
-            planBtn.addEventListener('click', function(e) {
-                const href = this.getAttribute('href');
-                
-                // Only act if it's an internal link
-                if (href.startsWith('#')) {
-                    e.preventDefault();
-                    const targetSection = document.querySelector(href);
-                    
-                    if (targetSection) {
-                        targetSection.scrollIntoView({ 
-                            behavior: 'smooth',
-                            block: 'start'
-                        });
-                    }
-                }
-            });
+        function scrollToDash() {
+            document.getElementById('dashboard').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleNotif() {
+            const toast = document.getElementById('notif-toast');
+            toast.style.bottom = "20px";
+            setTimeout(() => { toast.style.bottom = "-100px"; }, 4000);
         }
     </script>
 </body>

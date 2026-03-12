@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Spending Insights</title>
+</head>
+
+<body>
+
+<h1>Spending Insights</h1>
+
+<input id="amount" placeholder="Enter grocery cost">
+<button onclick="addCost()">Add</button>
+
+<p id="total"></p>
+
+<script>
+
+let costs=JSON.parse(localStorage.getItem("costs")) || []
+
+function addCost(){
+
+let amount=Number(document.getElementById("amount").value)
+
+costs.push(amount)
+
+localStorage.setItem("costs",JSON.stringify(costs))
+
+update()
+
+}
+
+function update(){
+
+let total=costs.reduce((a,b)=>a+b,0)
+
+document.getElementById("total").innerText="Total: ₱"+total
+
+}
+
+update()
+
+</script>
+
+</body>
+</html>

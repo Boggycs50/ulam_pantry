@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pantry Scanner</title>
+</head>
+
+<body>
+
+<h1>Pantry Scanner</h1>
+
+<video id="camera" autoplay width="300"></video>
+
+<script>
+
+navigator.mediaDevices.getUserMedia({video:true})
+.then(stream=>{
+document.getElementById("camera").srcObject=stream
+})
+
+</script>
+
+</body>
+</html>

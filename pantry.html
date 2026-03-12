@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Pantry</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>My Pantry</h1>
+
+<input id="foodInput" placeholder="Enter food item">
+<button onclick="addFood()">Add</button>
+
+<ul id="foodList"></ul>
+
+<script>
+
+let pantry = JSON.parse(localStorage.getItem("pantry")) || []
+
+function render(){
+let list=document.getElementById("foodList")
+list.innerHTML=""
+
+pantry.forEach(food=>{
+let li=document.createElement("li")
+li.textContent=food
+list.appendChild(li)
+})
+}
+
+function addFood(){
+let food=document.getElementById("foodInput").value
+pantry.push(food)
+localStorage.setItem("pantry",JSON.stringify(pantry))
+render()
+}
+
+render()
+
+</script>
+
+</body>
+</html>

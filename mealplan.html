@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Meal Planner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<h1>Weekly Meal Planner</h1>
+
+<input id="day" placeholder="Day">
+<input id="meal" placeholder="Meal">
+
+<button onclick="saveMeal()">Save</button>
+
+<ul id="planner"></ul>
+
+<script>
+
+let meals = JSON.parse(localStorage.getItem("meals")) || []
+
+function render(){
+
+let list=document.getElementById("planner")
+list.innerHTML=""
+
+meals.forEach(m=>{
+let li=document.createElement("li")
+li.textContent=m.day+" - "+m.meal
+list.appendChild(li)
+})
+
+}
+
+function saveMeal(){
+
+let day=document.getElementById("day").value
+let meal=document.getElementById("meal").value
+
+meals.push({day,meal})
+
+localStorage.setItem("meals",JSON.stringify(meals))
+
+render()
+
+}
+
+render()
+
+</script>
+
+</body>
+</html>

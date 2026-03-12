@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Recipe Suggestion</title>
+</head>
+
+<body>
+
+<h1>Use What You Have</h1>
+
+<button onclick="suggest()">Suggest Recipe</button>
+
+<p id="result"></p>
+
+<script>
+
+function suggest(){
+
+let pantry = JSON.parse(localStorage.getItem("pantry")) || []
+
+let recipes={
+egg:"Omelette",
+rice:"Fried Rice",
+chicken:"Chicken Adobo",
+bread:"Sandwich"
+}
+
+for(let item of pantry){
+
+if(recipes[item.toLowerCase()]){
+document.getElementById("result").innerText=
+"You can cook: "+recipes[item.toLowerCase()]
+return
+}
+
+}
+
+document.getElementById("result").innerText="No recipe match found."
+
+}
+
+</script>
+
+</body>
+</html>

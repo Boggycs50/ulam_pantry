@@ -2,17 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Plan Meals | UlamFinder</title>
+    <title>Plan Meal | UlamFinder</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <header class="subpage-header"><a href="index.html" class="back-link">Cancel</a></header>
-    <div class="container" style="max-width:500px">
-        <div class="card">
-            <h2>Add to <span>Plan</span></h2>
-            <input type="text" placeholder="Recipe Name" style="width:100%; padding:15px; margin:10px 0; border-radius:10px; border:1px solid #eee;">
-            <button class="btn-main" style="width:100%" onclick="alert('Meal Added!')">Save Meal</button>
+<body style="display: flex; align-items: center; justify-content: center; height: 100vh;">
+
+    <div class="container" style="max-width: 500px; padding: 0;">
+        <div class="premium-card" style="text-align: center; border: 3px solid var(--mint-brand);">
+            <h1 style="font-family: 'Playfair Display'; margin-bottom: 30px;">Add to <span>Plan</span></h1>
+            
+            <input type="text" class="input-field" placeholder="Recipe Name (e.g., Pork Menudo)">
+            <button class="btn-main" style="width: 100%; margin-top: 20px;" onclick="alert('Meal Added!')">Save Meal</button>
+            
+            <div style="margin-top: 25px;">
+                <a href="index.html" style="text-decoration: none; color: #888; font-size: 0.9rem;">Cancel</a>
+            </div>
         </div>
     </div>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </body>
 </html>

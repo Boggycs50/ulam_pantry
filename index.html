@@ -3,24 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UlamFinder | Home</title>
+    <title>UlamFinder | Dashboard</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-
     <nav class="navbar">
         <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
             <a href="index.html" class="logo">Ulam<span>Finder</span></a>
             <div class="nav-links">
                 <a href="pantry.html">Pantry</a>
                 <a href="suggest.html">Recipes</a>
-                <a href="mealplan.html">Track Plan</a>
+                <a href="weeklyplan.html">Weekly Plan</a>
+                <a href="mealplan.html">Meal Tracker</a>
                 <a href="login.html">Login</a>
-                <button class="notif-btn" onclick="showNotification()" style="margin-left: 15px; background: none; border: none; cursor: pointer; position: relative;">
-                    <i class="fa-solid fa-bell" style="font-size: 1.2rem; color: var(--deep-text);"></i>
-                    <div class="notif-dot" style="position: absolute; top: -2px; right: -2px; width: 8px; height: 8px; background: var(--pink-brand); border-radius: 50%; border: 2px solid white;"></div>
+                <button class="notif-btn" onclick="toggleNotif()">
+                    <i class="fa-solid fa-bell"></i>
+                    <div class="notif-dot"></div>
                 </button>
             </div>
         </div>
@@ -31,69 +31,59 @@
             <div class="hero-text" data-aos="fade-right">
                 <h1>Connect your <span>pantry</span> to your plate.</h1>
                 <p>Reducing food waste, saving money, and making healthy eating effortless for busy professionals and families.</p>
-                <a href="startplan.html" class="btn-main">Start Planning</a>
+                <button class="btn-main" onclick="location.href='startplan.html'">Start Planning</button>
             </div>
             <div class="hero-image" data-aos="zoom-in">
-                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000" alt="Professional Kitchen">
+                <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?auto=format&fit=crop&q=80&w=1000">
             </div>
         </header>
 
         <section id="dashboard" class="features">
-            
             <a href="pantry.html" class="card" data-aos="fade-up">
-                <i class="fa-solid fa-box-archive icon-scan"></i>
+                <i class="fa-solid fa-box-archive"></i>
                 <h3>My Pantry</h3>
-                <p>View and manage your available food stock and ingredients.</p>
+                <p>View your available food stock and current ingredient levels.</p>
             </a>
-
             <a href="scanner.html" class="card" data-aos="fade-up" data-aos-delay="100">
-                <i class="fa-solid fa-camera-viewfinder icon-scan"></i>
+                <i class="fa-solid fa-camera-viewfinder"></i>
                 <h3>AI Scanner</h3>
-                <p>Use your back camera to identify ingredients or scan QR codes.</p>
+                <p>Use your back camera to scan QR codes or identify ingredients instantly.</p>
             </a>
-
             <a href="suggest.html" class="card" data-aos="fade-up" data-aos-delay="200">
-                <i class="fa-solid fa-wand-magic-sparkles icon-magic"></i>
-                <h3>Suggestions</h3>
-                <p>Recipe ideas based on what you currently have in stock.</p>
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <h3>Magic Suggestions</h3>
+                <p>Generate recipe ideas based on your current pantry stock.</p>
             </a>
-
             <a href="weeklyplan.html" class="card" data-aos="fade-up" data-aos-delay="300">
-                <i class="fa-solid fa-calendar-week icon-plan"></i>
+                <i class="fa-solid fa-calendar-week"></i>
                 <h3>Weekly Planner</h3>
                 <p>View your full 7-day meal schedule at a glance.</p>
             </a>
-
             <a href="mealplan.html" class="card" data-aos="fade-up" data-aos-delay="400">
-                <i class="fa-solid fa-utensils icon-plan"></i>
+                <i class="fa-solid fa-utensils"></i>
                 <h3>Meal Tracker</h3>
-                <p>Track your daily meals, calories, and completion progress.</p>
+                <p>Track today's meal progress and monitor your calorie intake.</p>
             </a>
-
             <a href="insights.html" class="card" data-aos="fade-up" data-aos-delay="500">
-                <i class="fa-solid fa-chart-line icon-insight"></i>
-                <h3>Insights</h3>
-                <p>Track your food expenses and grocery spending trends.</p>
+                <i class="fa-solid fa-chart-line"></i>
+                <h3>Spending Insights</h3>
+                <p>Track your food expenses and see where you can save money.</p>
             </a>
-
         </section>
     </div>
 
-    <div id="alert-box" style="position: fixed; bottom: -100px; right: 20px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid var(--mint-brand); z-index: 9999; transition: 0.5s;">
-        <p style="margin: 0; font-weight: 800; color: var(--deep-text);">Notification</p>
-        <span style="font-size: 0.9rem; color: #666;">New Announcement: Don't forget to prep your Sinigang for dinner!</span>
+    <div id="notif-toast" style="position: fixed; bottom: -100px; right: 20px; background: white; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); border-left: 5px solid var(--pink-brand); z-index: 2000; transition: 0.5s;">
+        <strong style="display: block; color: var(--pink-brand);">Announcement!</strong>
+        <span id="notif-text">Your Chicken Adobo prep starts in 30 minutes!</span>
     </div>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Animations
         AOS.init({ duration: 1000, once: true });
-
-        // False Notification Function
-        function showNotification() {
-            const box = document.getElementById('alert-box');
-            box.style.bottom = "20px";
-            setTimeout(() => { box.style.bottom = "-100px"; }, 4000);
+        function toggleNotif() {
+            const toast = document.getElementById('notif-toast');
+            toast.style.bottom = "20px";
+            setTimeout(() => { toast.style.bottom = "-100px"; }, 4000);
         }
     </script>
 </body>
